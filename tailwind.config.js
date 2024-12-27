@@ -9,6 +9,11 @@ export default {
       xl: "1112px",
     },
     extend: {
+      colors: {
+        "dark-700": "#5A6573",
+        "dark-900": "#1A2B3D",
+        "primary-500": "#1882FF",
+      },
       container: {
         center: true,
       },
