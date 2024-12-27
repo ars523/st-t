@@ -5,7 +5,7 @@ function ProductCard({ product }: { product: IProduct }) {
         <div key={product.id}>
             <div className="w-full aspect-square">
                 <img
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-lg"
                     src={product.thumbnail}
                     alt={product.title}
                 />
