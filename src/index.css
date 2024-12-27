@@ -1,3 +1,32 @@
+@font-face {
+  font-family: "murecho";
+  src: url("/fonts/Murecho-Bold.ttf") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "murecho";
+  src: url("/fonts/Murecho-SemiBold.ttf") format("woff2");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "murecho";
+  src: url("/fonts/Murecho-Medium") format("woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "murecho";
+  src: url("/fonts/Murecho-Regular.ttf") format("woff2");
+  font-weight: 400;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: "murecho", sans-serif;
+  box-sizing: border-box;
+}
