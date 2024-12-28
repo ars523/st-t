@@ -17,6 +17,9 @@ export default {
       container: {
         center: true,
       },
+      boxShadow: {
+        cardShadow: "0px 4px 12px 0px #00000026",
+      },
     },
   },
   plugins: [],
