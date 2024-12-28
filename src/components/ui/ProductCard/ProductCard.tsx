@@ -1,8 +1,12 @@
 import { IProduct } from "../../../types"
 import wish from "../../../assets/icons/wish.png"
-import cart from "../../../assets/icons/cart.png"
+import cartIcon from "../../../assets/icons/cart.png"
 import eye from "../../../assets/icons/eye.png"
+import { use } from "react"
+import { CartContext } from "../../../context/cartContext"
 function ProductCard({ product }: { product: IProduct }) {
+    const { cart } = use(CartContext) || {}
+    console.log(cart, 'cart')
     return (
         <div className="group hover:shadow-cardShadow transition-all duration-200 ease-in-out rounded-lg cursor-pointer">
             <div className="w-full aspect-square relative">
@@ -19,7 +23,7 @@ function ProductCard({ product }: { product: IProduct }) {
                         <button
                             className="group-hover:flex gap-1 h-8 w-[186px] hidden text-sm font-medium backdrop-blur-[8px] text-white rounded-md border-[1.5px] border-[#FFFFFF4D] items-center justify-center bg-[#FFFFFF4D]"
                         >
-                            <img src={cart} className="w-[23.33px] h-[21px]" />
+                            <img src={cartIcon} className="w-[23.33px] h-[21px]" />
                             Add to Cart
                         </button>
                         <button
