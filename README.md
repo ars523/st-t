@@ -52,7 +52,7 @@ Ensure you have the following tools installed on your system:
    ```
 
 4. **Start the Development Server**  
-   Open your terminal and change to the project directory:
+   Run the development server to view the project:
    ```bash
    npm run dev
    ```
