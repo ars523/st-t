@@ -31,6 +31,14 @@ function ProductCard({ product }: { product: IProduct }) {
         return ((price * discountPercentage) / 100).toFixed(2);
     }
 
+    function calculatePriceAfterDiscount(price: number, discountPercentage: number) {
+        if (discountPercentage < 0 || !discountPercentage) {
+            return price;
+        }
+        const discountAmount = (price * discountPercentage) / 100;
+        return (price - discountAmount).toFixed(2);
+    }
+
     return (
         <div className={
             cn(
@@ -114,10 +122,15 @@ function ProductCard({ product }: { product: IProduct }) {
                     <h6 className='text-dark-700 text-sm'>{product.brand}</h6>
                     <h3 className='text-base line-clamp-2 leading-[22px] text-dark-900 font-semibold'>{product.title}</h3>
                 </div>
-                <p className='font-normal text-xl leading-[22px] py-[3px] text-primary-500 flex items-center gap-[3px]'>
-                    <span>৳</span>
-                    <span>{product.price}</span>
-                </p>
+                <div className="flex items-center gap-2">
+                    <p className='font-normal text-xl leading-[22px] py-[3px] text-primary-500 flex items-center gap-[3px]'>
+                        <span>৳</span>
+                        <span>{calculatePriceAfterDiscount(product.price, product?.discountPercentage)}</span>
+                    </p>
+                    <del className="text-sm leading-[16px] text-dark-600">
+                        ৳ {product.price}
+                    </del>
+                </div>
             </div>
             {
                 product.discountPercentage ? (

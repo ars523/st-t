@@ -12,6 +12,7 @@ export default {
       colors: {
         "dark-700": "#5A6573",
         "dark-900": "#1A2B3D",
+        "dark-600": "#77818C",
         "primary-500": "#1882FF",
         "cgreen-500": "#03A629",
       },
