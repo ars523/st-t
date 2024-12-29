@@ -4,15 +4,18 @@ import { fetchProducts } from "./api"
 import ProductListSkeleton from "./components/skeletons/ProductListSkeleton/ProductListSkeleton"
 import { CartProvider } from "./context/cartContext"
 import AppLayout from "./components/layouts/AppLayout/AppLayout"
+import ErrorBoundary from "./components/ui/ErrorBoundary/ErrorBoundary"
 
 function App() {
   const productsPromise = fetchProducts()
   return (
     <CartProvider>
       <AppLayout>
-        <Suspense fallback={<ProductListSkeleton />}>
-          <ProductsList productsPromise={productsPromise} />
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<ProductListSkeleton />}>
+            <ProductsList productsPromise={productsPromise} />
+          </Suspense>
+        </ErrorBoundary>
       </AppLayout>
     </CartProvider>
   )
