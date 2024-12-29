@@ -1,4 +1,4 @@
-# React 19 Project Installation Guide
+# Project Installation Guide
 
 This guide outlines the steps to install and set up this React 19 project. Follow the instructions below to get started.
 
@@ -8,7 +8,7 @@ This guide outlines the steps to install and set up this React 19 project. Follo
 
 Ensure you have the following tools installed on your system:
 
-1. **Node.js** (v18 or higher)  
+1. **Node.js** (v20 or higher)  
    Download and install from [https://nodejs.org/](https://nodejs.org/).
 
 2. **npm** (Node Package Manager) or **Yarn**
@@ -28,6 +28,31 @@ Ensure you have the following tools installed on your system:
 
 1. **Clone the Repository**  
    Use Git to clone the project repository:
+
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/ars523/st-t.git
+   ```
+
+2. **Navigate to the Project Directory**  
+   Open your terminal and change to the project directory:
+
+   ```bash
+   cd st-t
+
+   ```
+
+3. **Install Dependencies**  
+   Open your terminal and change to the project directory:
+
+   ##### Using npm:
+
+   ```bash
+   npm install
+
+   ```
+
+4. **Start the Development Server**  
+   Open your terminal and change to the project directory:
+   ```bash
+   npm run dev
    ```
