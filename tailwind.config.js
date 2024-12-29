@@ -21,6 +21,10 @@ export default {
       boxShadow: {
         cardShadow: "0px 4px 12px 0px #00000026",
       },
+      backgroundImage: {
+        "discount-gradient":
+          "linear-gradient(272.89deg, #FFA03B 0%, #F27D00 100%)",
+      },
     },
   },
   plugins: [],

@@ -4,6 +4,8 @@ import cartIcon from "../../../assets/icons/cart.png"
 import eye from "../../../assets/icons/eye.png"
 import trash from "../../../assets/icons/trash.png"
 import plus from "../../../assets/icons/plus.png"
+import connector from "../../../assets/icons/connector.png"
+import tail from "../../../assets/icons/tail.png"
 import { use } from "react"
 import { CartContext } from "../../../context/cartContext"
 import cn from "../../../lib/cn"
@@ -25,10 +27,14 @@ function ProductCard({ product }: { product: IProduct }) {
         }
     }
 
+    function calculateDiscountAmount(price: number, discountPercentage: number) {
+        return ((price * discountPercentage) / 100).toFixed(2);
+    }
+
     return (
         <div className={
             cn(
-                "group transition-all duration-200 ease-in-out rounded-lg",
+                "group transition-all duration-200 ease-in-out rounded-lg relative",
                 {
                     "shadow-cardShadow": alreadyInCart,
                     "hover:shadow-cardShadow": !alreadyInCart,
@@ -113,6 +119,16 @@ function ProductCard({ product }: { product: IProduct }) {
                     <span>{product.price}</span>
                 </p>
             </div>
+            {
+                product.discountPercentage ? (
+                    <div className="bg-discount-gradient top-[11px] absolute -left-[4px] z-50 w-[53px] h-6 rounded-tl-[4px] flex items-center justify-center">
+                        <img src={connector} className="w-1 absolute z-50 h-[6px] left-0 -bottom-[6px]" />
+                        <img src={tail} className="absolute z-50 h-6 w-3 -right-[11px] top-0" />
+                        <span className="text-xs font-medium leading-[14px] text-white">- ৳ {calculateDiscountAmount(product.price, product.discountPercentage)}</span>
+                    </div>
+                ) : null
+            }
+
         </div>
     )
 }
