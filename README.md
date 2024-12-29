@@ -42,7 +42,7 @@ Ensure you have the following tools installed on your system:
    ```
 
 3. **Install Dependencies**  
-   Open your terminal and change to the project directory:
+   Install the required dependencies using npm or Yarn:
 
    ##### Using npm:
 
