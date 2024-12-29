@@ -28,7 +28,7 @@ function ProductCard({ product }: { product: IProduct }) {
     }
 
     function calculateDiscountAmount(price: number, discountPercentage: number) {
-        return ((price * discountPercentage) / 100).toFixed(2);
+        return ((price * discountPercentage) / 100).toFixed(1);
     }
 
     function calculatePriceAfterDiscount(price: number, discountPercentage: number) {
@@ -36,7 +36,7 @@ function ProductCard({ product }: { product: IProduct }) {
             return price;
         }
         const discountAmount = (price * discountPercentage) / 100;
-        return (price - discountAmount).toFixed(2);
+        return (price - discountAmount).toFixed(1);
     }
 
     return (
@@ -134,7 +134,7 @@ function ProductCard({ product }: { product: IProduct }) {
             </div>
             {
                 product.discountPercentage ? (
-                    <div className="bg-discount-gradient top-[11px] absolute -left-[4px] z-50 w-[53px] h-6 rounded-tl-[4px] flex items-center justify-center">
+                    <div className="bg-discount-gradient top-[11px] absolute -left-[4px] z-50 min-w-[53px] h-6 rounded-tl-[4px] flex items-center justify-center">
                         <img src={connector} className="w-1 absolute z-50 h-[6px] left-0 -bottom-[6px]" />
                         <img src={tail} className="absolute z-50 h-6 w-3 -right-[11px] top-0" />
                         <span className="text-xs font-medium leading-[14px] text-white">- ৳ {calculateDiscountAmount(product.price, product.discountPercentage)}</span>
