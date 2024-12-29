@@ -8,11 +8,9 @@ function App() {
   const productsPromise = fetchProducts()
   return (
     <CartProvider>
-      <div>
-        <Suspense fallback={<ProductListSkeleton />}>
-          <ProductsList productsPromise={productsPromise} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<ProductListSkeleton />}>
+        <ProductsList productsPromise={productsPromise} />
+      </Suspense>
     </CartProvider>
   )
 }

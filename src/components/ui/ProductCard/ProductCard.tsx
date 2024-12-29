@@ -2,32 +2,100 @@ import { IProduct } from "../../../types"
 import wish from "../../../assets/icons/wish.png"
 import cartIcon from "../../../assets/icons/cart.png"
 import eye from "../../../assets/icons/eye.png"
+import trash from "../../../assets/icons/trash.png"
+import plus from "../../../assets/icons/plus.png"
 import { use } from "react"
 import { CartContext } from "../../../context/cartContext"
+import cn from "../../../lib/cn"
+
 function ProductCard({ product }: { product: IProduct }) {
-    const { cart } = use(CartContext) || {}
-    console.log(cart, 'cart')
+    const { cart, dispatchCart } = use(CartContext) || {}
+
+    const alreadyInCart = cart?.find((item) => item.id === product.id)
+
+    const handleAddToCart = (product: IProduct) => {
+        if (dispatchCart) {
+            dispatchCart({ type: 'ADD_TO_CART', payload: product })
+        }
+    }
+
+    const handleDeleteFromCart = (product: IProduct) => {
+        if (dispatchCart) {
+            dispatchCart({ type: 'REMOVE_FROM_CART', payload: product })
+        }
+    }
+
     return (
-        <div className="group hover:shadow-cardShadow transition-all duration-200 ease-in-out rounded-lg cursor-pointer">
+        <div className={
+            cn(
+                "group transition-all duration-200 ease-in-out rounded-lg",
+                {
+                    "shadow-cardShadow": alreadyInCart,
+                    "hover:shadow-cardShadow": !alreadyInCart,
+                }
+            )
+        }
+        >
             <div className="w-full aspect-square relative">
                 <img
                     className="w-full h-full object-cover rounded-lg bg-[#ebe6e6]"
                     src={product.thumbnail}
                     alt={product.title}
                 />
-                <div className="absolute w-full h-full z-10 top-0 left-0 right-0 bottom-0 bg-black bg-opacity-0 group-hover:bg-opacity-[33%] transition-all duration-200 ease-in-out rounded-lg flex items-center justify-center">
-                    <button className="opacity-0 group-hover:opacity-100 absolute top-[10px] right-[10px] z-20">
+                <div className={
+                    cn(
+                        "absolute w-full h-full z-10 top-0 left-0 right-0 bottom-0 bg-black bg-opacity-0 transition-all duration-200 ease-in-out rounded-lg flex items-center justify-center",
+                        {
+                            "bg-opacity-[33%]": alreadyInCart,
+                            "group-hover:bg-opacity-[33%]": !alreadyInCart
+                        }
+                    )
+                }>
+                    <button className={
+                        cn(
+                            "opacity-0 absolute top-[10px] right-[10px] z-20",
+                            {
+                                "opacity-100": alreadyInCart,
+                                "group-hover:opacity-100": !alreadyInCart
+                            }
+                        )
+                    }>
                         <img src={wish} className="w-[23.33px] h-[21px]" />
                     </button>
                     <div className="absolute bottom-0 left-0 right-0 z-40 flex flex-col items-center justify-center gap-y-2 py-3">
+                        {
+                            alreadyInCart ? (
+                                <div
+                                    className="flex justify-between h-8 w-[186px] bg-cgreen-500 text-sm font-medium backdrop-blur-[8px] text-white rounded-md items-center"
+                                >
+                                    <button onClick={() => handleDeleteFromCart(product)}>
+                                        <img src={trash} className="w-5 h-5 ml-3" />
+                                    </button>
+                                    <span>{alreadyInCart.quantity} Added in Cart</span>
+                                    <button onClick={() => handleAddToCart(product)}>
+                                        <img src={plus} className="w-5 h-5 mr-3" />
+                                    </button>
+                                </div>
+                            ) : (
+                                <button
+                                    onClick={() => handleAddToCart(product)}
+                                    className="group-hover:flex gap-1 h-8 w-[186px] hidden text-sm font-medium backdrop-blur-[8px] text-white rounded-md border-[1.5px] border-[#FFFFFF4D] items-center justify-center bg-[#FFFFFF4D]"
+                                >
+                                    <img src={cartIcon} className="w-[23.33px] h-[21px]" />
+                                    Add to Cart
+                                </button>
+                            )
+                        }
                         <button
-                            className="group-hover:flex gap-1 h-8 w-[186px] hidden text-sm font-medium backdrop-blur-[8px] text-white rounded-md border-[1.5px] border-[#FFFFFF4D] items-center justify-center bg-[#FFFFFF4D]"
-                        >
-                            <img src={cartIcon} className="w-[23.33px] h-[21px]" />
-                            Add to Cart
-                        </button>
-                        <button
-                            className="group-hover:flex gap-1 h-8 w-[186px] hidden text-sm font-medium backdrop-blur-[8px] text-white rounded-md border-[1.5px] border-[#FFFFFF4D] items-center justify-center bg-[#FFFFFF4D]"
+                            className={
+                                cn(
+                                    "gap-1 h-8 w-[186px] hidden text-sm font-medium backdrop-blur-[8px] text-white rounded-md border-[1.5px] border-[#FFFFFF4D] items-center justify-center bg-[#FFFFFF4D]",
+                                    {
+                                        "flex": alreadyInCart,
+                                        "group-hover:flex": !alreadyInCart
+                                    }
+                                )
+                            }
                         >
                             <img src={eye} className="w-[16.67px] h-[14.26px]" />
                             Quick View

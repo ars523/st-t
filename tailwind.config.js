@@ -13,6 +13,7 @@ export default {
         "dark-700": "#5A6573",
         "dark-900": "#1A2B3D",
         "primary-500": "#1882FF",
+        "cgreen-500": "#03A629",
       },
       container: {
         center: true,
